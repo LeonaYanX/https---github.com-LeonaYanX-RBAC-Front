@@ -1,0 +1,27 @@
+.user-card {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 4px;
+  width: 1000px;
+  margin: 8px;
+}
+.user-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+.user-card .assign-role,
+.user-card .delete-user {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+}
+.user-card .assign-role select {
+  margin-right: 8px;
+}
+.user-card .assign-msg,
+.user-card .delete-msg {
+  margin-left: 8px;
+  font-size: 0.9em;
+}
+

@@ -1,0 +1,38 @@
+.user-list-page {
+  padding: аuto;                /* отступы по умолчанию */
+  max-width: 1200px;          /* максимальная ширина страницы */
+  margin: 0 auto;             /* центрируем страницу */
+  display: flex;              /* включаем flex-контейнер */
+  flex-direction: column;      /* располагаем элементы в колонку (вертикально) */
+}
+.user-list {
+  display: flex;                /* включаем flex-контейнер */
+  flex-direction: column;       /* располагать элементы в колонку (вертикально) */
+  align-items: stretch;         /* карточки займет всю ширину контейнера (по желанию) */
+  gap: 16px;                    /* расстояние между карточками */
+}
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}
+.user-list-page h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.user-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+.create-user-btn {
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.create-user-btn:hover {
+  background-color: #218838;
+}
