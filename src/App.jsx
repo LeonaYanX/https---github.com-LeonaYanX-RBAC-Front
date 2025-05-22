@@ -7,6 +7,7 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import UserDetailPage     from "./pages/UserDetailPage";
 import CreateUserPage from './pages/CreateUserPage';
+import ActivateAccountPage from './pages/ActivateAccountPage';
 export default function App() {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/users" element={<UserListPage />} />
         <Route path="/users/:id" element={<UserDetailPage />} />
         <Route path="/create-user" element={<CreateUserPage />} />
+        <Route path="/activate/:token" element={<ActivateAccountPage />} />
         {/* если нет совпадения, перенаправляем на логин */}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>

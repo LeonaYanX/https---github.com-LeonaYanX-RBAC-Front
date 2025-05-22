@@ -49,4 +49,23 @@ API.interceptors.response.use(
   }
 );
 
+/**
+ * Upload a photo file.
+ * @param {FormData} formData — объект FormData с ключом "photo" и файлом.
+ * @returns {Promise<AxiosResponse<{ url: string }>>}
+ */
+export function uploadPhoto(formData) {
+  // создаём axios-клиент без JSON-хедера, чтобы multipart работал
+  return axios.post(
+    `${process.env.REACT_APP_API_BASE_URL}/photos`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
+};
+
 export default API;

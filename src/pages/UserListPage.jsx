@@ -1,7 +1,7 @@
 // src/pages/UserListPage.jsx
 
 import React, { useEffect, useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import API from '../api/apiClient';
 import UserCard from '../components/UserCard';
 import { AuthContext } from '../context/AuthContext';
@@ -10,14 +10,14 @@ import '../styles/UserListPage.css';
 
 export default function UserListPage() {
   const [users, setUsers]     = useState([]);
-  const [roles, setRoles]     = useState([]);      // Список ролей
+  const [roles, setRoles]     = useState([]);      // Список ролей для выпадающего списка
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState('');
   const { authData }          = useContext(AuthContext);
   const perms                 = authData?.user?.permissions || [];
   const navigate              = useNavigate();
 
-  // Загрузка пользователей
+  // 1) Загрузка пользователей
   useEffect(() => {
     API.get('/users')
       .then(res => setUsers(res.data.data))
@@ -25,14 +25,11 @@ export default function UserListPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Загрузка списка ролей (для assign-role)
+  // 2) Загрузка списка ролей (для Assign Role)
   useEffect(() => {
     fetchRoles()
       .then(res => setRoles(res.data.data))
-      .catch(() => {
-        // Если не удалось, оставляем пустой список
-        setRoles([]);
-      });
+      .catch(() => setRoles([]));
   }, []);
 
   if (loading) return <div>Loading…</div>;
@@ -53,17 +50,17 @@ export default function UserListPage() {
       <h2>Users</h2>
       <div className="user-list">
         {users.map(u => (
-          <Link 
-            to={`/users/${u.id}`} 
-            key={u.id} 
-            className="user-card-link"
+          <div
+            key={u.id}
+            className="user-card-wrapper"
+            // Навигация по клику на карточку, но не на кнопки/селекты внутри
+            onClick={() => navigate(`/users/${u.id}`)}
           >
-            {/* Передаём роли в карточку для выпадающего списка */}
             <UserCard 
               user={u} 
-              roles={roles} 
+              roles={roles}
             />
-          </Link>
+          </div>
         ))}
       </div>
     </div>
